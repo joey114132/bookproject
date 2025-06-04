@@ -1,26 +1,12 @@
 {% extends "books/base.html" %}
 {% block title %}나의 책 목록{% endblock %}
 {% block content %}
-<h1>📚 나의 책 목록</h1>
-<form method="post" class="book-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">➕ 추가</button>
-</form>
-<div class="book-container">
+<h1>📘 나의 책 목록</h1>
+<ul class="book-list">
     {% for book in books %}
-        <div class="book-card">
-            <div class="book-info">
-                <strong>{{ book.title }}</strong>
-                <p>{{ book.author }}</p>
-            </div>
-            <form method="post" action="{% url 'books:delete_book' book.id %}">
-                {% csrf_token %}
-                <button type="submit" class="delete-btn">🗑 삭제</button>
-            </form>
-        </div>
-    {% empty %}
-        <p>책이 없습니다.</p>
+    <li>
+        <a href="{% url 'books:detail' book.id %}">{{ book.title }}</a> by {{ book.author }}
+    </li>
     {% endfor %}
-</div>
+</ul>
 {% endblock %}
