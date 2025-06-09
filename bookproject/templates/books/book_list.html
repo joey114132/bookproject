@@ -1,0 +1,26 @@
+{% extends "books/base.html" %}
+{% load static %}
+
+{% block title %}책 목록{% endblock %}
+
+{% block content %}
+<h1>책 목록</h1>
+<a href="{% url 'books:book_add' %}" class="icon-button">
+    <img src="{% static 'books/images/add.png' %}" alt="Add"> 새 책 추가
+</a>
+
+<ul class="book-list">
+    {% for book in books %}
+    <li>
+        <a href="{% url 'books:book_detail' book.id %}">{{ book.title }}</a> by {{ book.author }}
+        |
+        <a href="{% url 'books:book_edit' book.id %}" class="icon-button">
+            <img src="{% static 'books/images/edit.png' %}" alt="Edit"> 수정
+        </a>
+        <a href="{% url 'books:book_delete' book.id %}" class="icon-button">
+            <img src="{% static 'books/images/delete.png' %}" alt="Delete"> 삭제
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

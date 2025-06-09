@@ -1,8 +1,0 @@
-{% extends "books/base.html" %}
-{% block title %}투표 결과{% endblock %}
-{% block content %}
-<h1>📙 {{ book.title }}</h1>
-<p>저자: {{ book.author }}</p>
-<p>총 투표 수: {{ book.votes }}</p>
-<a href="{% url 'books:list' %}">← 목록으로 돌아가기</a>
-{% endblock %}

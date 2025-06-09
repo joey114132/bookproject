@@ -1,0 +1,14 @@
+{% extends "books/base.html" %}
+
+{% block title %}책 삭제{% endblock %}
+
+{% block content %}
+<h2>“{{ book.title }}” 삭제</h2>
+<p>정말 삭제하시겠습니까?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">삭제</button>
+    <a href="{% url 'books:book_list' %}">취소</a>
+</form>
+{% endblock %}
